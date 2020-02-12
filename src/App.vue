@@ -40,16 +40,13 @@ export default {
      ]
     }
   },
-    methods:{
-        addTodo(newTodo) {
-          this.todos = [...this.todos, newTodo];
-          
-       
-        },
-        deleteTodo(id){
-           this.todos = this.todos.filter(todo => todo.id !== id)
-        
-        }
+  methods:{
+    addTodo(newTodo) {
+      this.todos = [...this.todos, newTodo];
+    },
+    deleteTodo(id){
+        this.todos = this.todos.filter(todo => todo.id !== id)
+    }
   }
   
 }
