@@ -1,7 +1,7 @@
 <template>
   <div id="app">
    <p>App</p>
-   <Todo v-bind:todos="todos" v-on:del-todo="deleteTodo"></Todo>
+   <Todo v-bind:todos="todos" v-on:del-todo="deleteTodo" v-on:updateTodo="updateTodo"></Todo>
    <AddTodo v-on:addTodo="addTodo"></AddTodo>
   </div>
 </template>
@@ -46,7 +46,23 @@ export default {
     },
     deleteTodo(id){
         this.todos = this.todos.filter(todo => todo.id !== id)
+    },
+    updateTodo(id,updated){
+      console.log(id, updated);
     }
+    // updateTodo(){
+            
+    //         const updatedTodo = {
+    //             id: uuid.v4(),
+    //             title:this.title,
+    //             isDone: false,
+    //             isEditing:false
+    //         }
+    //         this.resetEditting()
+    //         this.$emit('updateTodo', updatedTodo);
+            
+            
+    //     }
   }
   
 }

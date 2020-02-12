@@ -2,7 +2,7 @@
     <div v-bind:class="{'isComplete':todo.isDone}">
         <ul>
             <li>
-                <input v-if="this.todo.isEditing" type="text"  @keydown.esc="resetEditting" @keyup.enter="edit">
+                <input v-if="this.todo.isEditing" type="text" v-model="title"  @keydown.esc="resetEditting" @keyup.enter="$emit('updateTodo',updated)">
                 <input v-if="!this.todo.isEditing" type="checkbox" v-on:click="TaskDone">
                 <span v-on:click="editTodo" >{{todo.title}}</span>
                 <button  v-if="!this.todo.isEditing" v-on:click="$emit('del-todo', todo.id)">DELETE ME</button>
@@ -12,10 +12,21 @@
 </template>
 
 <script>
-
+import uuid from 'uuid'
 export default {
     name:'TodoItem',
     props:["todo"],
+    data (){
+        return{
+            updated:{
+            id: uuid(),
+            title:this.title,
+            isDone:false,
+            isEditing:false
+            }
+          
+        }
+    },
     methods: {
         TaskDone(){
           this.todo.isDone = !this.todo.isDone
@@ -26,11 +37,10 @@ export default {
 
         resetEditting(){
 			this.todo.isEditing = false;
-        },
-        edit(){
-            console.log('edit')
         }
-    },
+        
+        
+    }
 
 }
 </script>

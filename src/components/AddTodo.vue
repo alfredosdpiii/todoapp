@@ -25,7 +25,8 @@ export default {
             }
             this.title = "";
             this.$emit('addTodo', newTodo);
-        },
+        }
+        
     }
 
 }
